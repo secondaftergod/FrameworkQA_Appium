@@ -2,24 +2,18 @@ package pageobjects;
 
 import base.Setup;
 import io.appium.java_client.MobileElement;
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
 
 public class SplashScreen extends Setup{
-
 	public SplashScreen() throws FileNotFoundException, IOException {
 		super();
 	}
 
-	public void searchJava() {
-		MobileElement el18 = (MobileElement) driver.findElementById("com.amazon.mShop.android.shopping:id/chrome_search_hint_view");
-		el18.click();
-		MobileElement el19 = (MobileElement) driver.findElementById("com.amazon.mShop.android.shopping:id/rs_search_src_text");
-		el19.clear();
-		el19.sendKeys("java");
-	}
 
 //	private MobileElement skipSignInButton() {
 //		return (MobileElement)

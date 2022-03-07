@@ -4,6 +4,7 @@ import base.Setup;
 import io.appium.java_client.MobileElement;
 import org.junit.Assert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -15,10 +16,17 @@ public class SearchResultScreen extends Setup {
 
 	}
 
-	public void assertSearchResultPage() {
-
-		Assert.assertTrue("Search Result Page not displayed", homeSearch().isDisplayed());
+//	-----------------------------
+	public MobileElement searchField(){
+		return (MobileElement) driver.findElementById("com.amazon.mShop.android.shopping:id/chrome_search_hint_view");
 	}
+	public MobileElement searchFieldAfterClick(){
+		return (MobileElement) driver.findElementById("com.amazon.mShop.android.shopping:id/rs_search_src_text");
+	}
+	private MobileElement resultsCount() {
+		return (MobileElement) driver.findElement(By.xpath("//android.widget.TextView[contains(@text,'RESULTS')]"));
+	}
+//	------------------------------
 
 	public void assertResultCount() {
 
@@ -27,28 +35,13 @@ public class SearchResultScreen extends Setup {
 
 	public void enterValuesForHomeSearch(String searchData) {
 
-		Assert.assertTrue("Home search element not displayed", homeSearch().isDisplayed());
-		homeSearch().click();
-		homeSearch().clear();
-		homeSearch().sendKeys(searchData);
+		Assert.assertTrue("Home search element not displayed", searchField().isDisplayed());
+		searchField().click();
+		searchFieldAfterClick().clear();
+		searchFieldAfterClick().sendKeys(searchData);
+		searchFieldAfterClick().sendKeys(Keys.ENTER);
 	}
 
-	public void clickDropdown() {
 
-		searchDropDown().click();
-	}
 
-	// Elements below utilised in by the methods above.
-	private MobileElement homeSearch() {
-		return (MobileElement) driver.findElement(By.id("com.amazon.mShop.android.shopping:id/rs_search_src_text"));
-	}
-
-	private MobileElement searchDropDown() {
-		return (MobileElement) driver
-				.findElement(By.id("com.amazon.mShop.android.shopping:id/iss_search_dropdown_item_text"));
-	}
-
-	private MobileElement resultsCount() {
-		return (MobileElement) driver.findElement(By.xpath("//android.widget.TextView[contains(@text,'Results')]"));
-	}
 }

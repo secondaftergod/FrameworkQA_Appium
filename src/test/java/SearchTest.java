@@ -1,4 +1,6 @@
+import org.junit.Assert;
 import org.junit.Test;
+import pageobjects.SearchResultScreen;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -13,7 +15,9 @@ public class SearchTest extends BaseTest {
 
 	@Test
 	public void searchTest() {
-		searchResultScreen.enterValuesForHomeSearch("java");
+		searchResultScreen.enterValuesForHomeSearch("Java");
+		searchResultScreen.assertResultCount();
+
 	}
 
 	}
